@@ -4,7 +4,7 @@ mongoose.set("strictQuery", false);
 module.exports.connectDB = async()=>{
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log(`MongoDB Connect: ${conn,connection.host}`);
+        console.log(`MongoDB Connect: ${conn.connection.host}`);
     } catch (error) {
         console.log(error);
         process.exit(1);
