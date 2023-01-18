@@ -1,9 +1,10 @@
+require('dotenv').configure();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 var db = require("./db");
 const _ = require("lodash");
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -121,6 +122,8 @@ app.get("/:customList",(req,res)=>{
   
 });
 
-app.listen(port,function(){
-  console.log("Server is running on port : " + port);
-});
+db.connectDB().then(()=>{
+  app.listen(PORT,function(){
+    console.log(`Server is running on port :${PORT}`);
+  });
+})

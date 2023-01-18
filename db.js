@@ -1,7 +1,16 @@
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb+srv://admin-carbon:Apisit25421@cluster0.ioc3qa5.mongodb.net/todolistDB", {useNewUrlParser: true,});
-console.log("database connection established"); 
+
+module.exports.connectDB = async()=>{
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connect: ${conn,connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+        
+    }
 
 const todoSchema = new mongoose.Schema({
     name : String
